@@ -1,4 +1,50 @@
 <!DOCTYPE html>
 <html>
-    
+  <head>
+		<link rel="stylesheet" type="text/css" href="iPhone5SC.countdown.css">
+		<link href='http://fonts.googleapis.com/css?family=Noto+Sans' rel='stylesheet' type='text/css'>
+	</head>
+	<body>
+		<!-- copy please(embed) -->
+			<div class="icount">
+				<span style="display:block;position: absolute;top:90px;right:200px;font-family: 'Myriad Pro','Noto Sans';font-size: 36px;margin-top:-10px;">Countdown!</span>
+				<img src="images/5sc_title.png">
+				<img src="images/apple.png" style="display: block;position:absolute;width:100px;top:10px;right:20px;">
+				<span style="font-family: 'Helvetica Neue','Myriad Pro','Noto Sans';font-size: 80px;font-weight: lighter">iOS 7</span>
+				<span style="display:block;position: absolute;right:15px;top:99px;font-family: 'Myriad Pro','Noto Sans';font-size: 95px;" class="time">00:00:00</span>
+				<img src="images/5c_green.png" style="width:96%;display:block;position: absolute;right:-60px;bottom:10px;">
+				<!-- <img src="http://images.apple.com/home/images/home_iphone5c_hero_green(color)_small.png"> -->
+				<!-- <img src="images.apple.com/home/images/home_iphone5c_hero_title_medium.png"> -->
+			</div>
+			<script>
+			window.onload = countgo;
+			
+			function countgo() {
+				civ = document.querySelector('.icount .time');
+				var time = new Date();
+				var target = new Date(2013,8,20);
+				
+				uallsec = Math.floor((target.getTime() - time.getTime()) / 1000); //ms から s　に変換
+				var	hour = Math.floor(uallsec / 3600);//s to h
+				var min = Math.floor((uallsec - hour * 3600) / 60);
+				var sec = uallsec - (hour * 3600 + min * 60);
+				//alert(allsec + "\n" + hour + "\n" + min + "\n" + sec + "\n");
+				if (min < 10) min = "0" + min;
+				if (sec < 10) sec = "0" + sec;
+				if (hour < 10){
+					hour = "0" + hour;
+				}
+				
+				civ.innerHTML = hour + ":" + min + ":" + sec;
+				
+				/*if (hour > 72) {
+					var days = Math.floor(hour / 24);
+					civ.innerHTML = "<span style='font-size:140px'>"+ days + "</span>" + "Days";
+				}*/
+				
+				setTimeout("countgo()",1000);
+			}
+		</script>
+		<!-- end copy please(embed)-->
+	</body>
 </html>

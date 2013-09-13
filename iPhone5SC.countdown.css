@@ -1,0 +1,19 @@
+body{
+	margin:0;
+	padding:0;
+}
+
+.icount{
+	box-sizing: border-box; -moz-box-sizing: border-box;
+	background-color:#97ee45;
+	width:600px;
+	height:265px;
+	margin:10px auto;
+	padding:13px;
+	position:relative;
+	overflow: hidden;
+}
+
+.icount img{
+	display:block;
+}
