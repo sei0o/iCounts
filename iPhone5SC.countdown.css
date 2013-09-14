@@ -3,9 +3,8 @@ body{
 	padding:0;
 }
 
-.icount{
+.icount,.icount .cbox{
 	box-sizing: border-box; -moz-box-sizing: border-box;
-	background-color:#97ee45;
 	width:600px;
 	height:265px;
 	margin:10px auto;
@@ -14,6 +13,73 @@ body{
 	overflow: hidden;
 }
 
-.icount img{
+.icount .images img{
+	width:96%;
 	display:block;
+	position: absolute;
+	right:-600px;
+	bottom:10px;
+	animation:slide 30s cubic-bezier(0.23, 1, 0.32, 1) 0s infinite;
 }
+
+.icount .cbox{
+	animation: bgslide 30s cubic-bezier(0.23, 1, 0.32, 1) 0s infinite;
+	box-sizing: border-box; -moz-box-sizing: border-box;
+	padding:13px;
+	position: absolute;
+	bottom: -13px;
+	right: -600px;
+}
+
+.icount .images img:nth-of-type(1), .icount .cbox:nth-of-type(1){
+	animation-delay:0s;
+}
+.icount .images img:nth-of-type(2), .icount .cbox:nth-of-type(2) {
+	animation-delay:6s;
+}
+.icount .images img:nth-of-type(3), .icount .cbox:nth-of-type(3) {
+	animation-delay:12s;
+}
+.icount .images img:nth-of-type(4), .icount .cbox:nth-of-type(4) {
+	animation-delay:18s;
+}
+.icount .images img:nth-of-type(5), .icount .cbox:nth-of-type(5) {
+	animation-delay:24s;
+}
+
+@keyframes slide {
+	0% {right:-600px;bottom:10px; z-index:10;}/*STUND*/
+	
+/*in*/5% {right:-60px;}/*go STAGE*/
+	20% {right:-60px;z-index:-10;}/*STAGE % = 100 / SLIDE COUNT (ずれる）*/
+/*out*/25% {right:600px;bottom:10px;}/*go UNDER_1 in = out*/
+	31% {right:600px;bottom:-265px;}/*UNDER_1*/
+	70% {right:-600px;bottom:-265px;}/*go UNDER_3*/
+	
+	100%{right:-600px;bottom:10px;}/*STUND*/
+}
+
+@keyframes bgslide {
+	0% {right:-600px;bottom:-13px; z-index:10;}/*STUND*/
+	
+/*in*/5% {right:0px;}/*go STAGE*/
+	20% {right:0px;z-index:-10;}/*STAGE % = 100 / SLIDE COUNT (ずれる）*/
+	/*　この場合は1s　で　next slideが入ってくるから
+	 *	2s以上stageにいるとずれる。
+	 *
+	 *	stg = stage
+	 *	t = transform(移動)
+	 *  TIME 0		1		 2	 3   4   5
+	 *	THIS           T   STG T   OUT
+	 *	NEXT T    STG  T   OUT
+/*out*/25% {right:600px;bottom:-13px;}/*go UNDER_1 in = out*/
+	31% {right:600px;bottom:-278px;}/*UNDER_1*/
+	70% {right:-600px;bottom:-278px;}/*go UNDER_3*/
+/*	70.1% {right:-600px;bottom:-13px;}/*go STUND*/
+
+	100%{right:-600px;bottom:-13px;}/*STUND*/
+}
+/*@-moz-keyframes ugoku{
+	0%{right:-60px;}
+	100%{right:1000px;}
+}*/
